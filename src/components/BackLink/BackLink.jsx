@@ -1,5 +1,6 @@
 import { HiArrowLeft } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const BackLink = ({ to, children }) => {
   return (
@@ -8,4 +9,9 @@ export const BackLink = ({ to, children }) => {
       {children}
     </Link>
   );
+};
+
+BackLink.propTypes = {
+  to: PropTypes.any,
+  children: PropTypes.string.isRequired,
 };

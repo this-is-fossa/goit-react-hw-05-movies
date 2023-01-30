@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { fetchTrendingMovies } from '../services/MoviesAPI';
+import { fetchTrendingMovies } from '../../services/MoviesAPI';
 
 const Home = () => {
   const [movies, setMovies] = useState(null);

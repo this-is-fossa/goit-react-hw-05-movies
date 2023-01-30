@@ -17,10 +17,14 @@ const Cast = () => {
           return (
             <li key={actor.id}>
               <div>
-                <img
-                  src={`${BASE_IMG_URL}w200${actor.profile_path}`}
-                  alt="Actor poster"
-                />
+                {actor.profile_path ? (
+                  <img
+                    src={`${BASE_IMG_URL}w300${actor.profile_path}`}
+                    alt="Actor poster"
+                  />
+                ) : (
+                  'Not found photo'
+                )}
               </div>
               <div>
                 <h5>Name:{actor.name}</h5>

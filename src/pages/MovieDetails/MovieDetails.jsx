@@ -27,10 +27,14 @@ const MovieDetails = () => {
         <BackLink to={backLinkHref}>Go back</BackLink>
         <div>
           <div>
-            <img
-              src={`${BASE_IMG_URL}w300${movie?.poster_path}`}
-              alt={movie?.title}
-            />
+            {movie.poster_path ? (
+              <img
+                src={`${BASE_IMG_URL}w300${movie.poster_path}`}
+                alt={movie?.title}
+              />
+            ) : (
+              'Photo not found'
+            )}
           </div>
           <div>
             <h2>{movie?.title}</h2>

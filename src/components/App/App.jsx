@@ -4,11 +4,13 @@ import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 
 import { NoMatch } from 'components/NoMatch/NoMatch';
 
-const Home = lazy(() => import('../../pages/Home'));
-const Movies = lazy(() => import('../../pages/Movies'));
-const MovieDetails = lazy(() => import('../../pages/MovieDetails'));
-const Review = lazy(() => import('../Reviews/Reviews'));
-const Cast = lazy(() => import('../Cast/Cast'));
+const Home = lazy(() => import('../../pages/Home/Home'));
+const Movies = lazy(() => import('../../pages/Movies/Movies'));
+const MovieDetails = lazy(() =>
+  import('../../pages/MovieDetails/MovieDetails')
+);
+const Review = lazy(() => import('../../pages/Reviews/Reviews'));
+const Cast = lazy(() => import('../../pages/Cast/Cast'));
 
 export const App = () => {
   return (
