@@ -2,6 +2,17 @@ import { useState, useEffect } from 'react';
 import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
 import { fetchMoviesById, BASE_IMG_URL } from 'services/MoviesAPI';
 import { BackLink } from 'components/BackLink/BackLink';
+import {
+  Wrapper,
+  BackLinkWrap,
+  CardMovie,
+  CardImg,
+  Img,
+  MovieInfo,
+  GenresInfo,
+  GenreItem,
+  AdditionalInfo,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -23,51 +34,55 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <div>
-        <BackLink to={backLinkHref}>Go back</BackLink>
-        <div>
-          <div>
+      <Wrapper>
+        <BackLinkWrap>
+          <BackLink to={backLinkHref}>Go back</BackLink>
+        </BackLinkWrap>
+        <CardMovie>
+          <CardImg>
             {movie.poster_path ? (
-              <img
+              <Img
                 src={`${BASE_IMG_URL}w300${movie.poster_path}`}
                 alt={movie?.title}
               />
             ) : (
               'Photo not found'
             )}
-          </div>
-          <div>
+          </CardImg>
+          <MovieInfo>
             <h2>{movie?.title}</h2>
             <p>User Score: {Math.round(movie?.vote_average) * 10}%</p>
             <div>
               <h3>Overview</h3>
               <p>{movie?.overview}</p>
             </div>
-            <div>
-              <h3>Genres</h3>
+            <h3>Genres</h3>
+            <GenresInfo>
               {movie.genres?.map(gen => {
-                return <p key={gen.id}>{gen.name}</p>;
+                return <GenreItem key={gen.id}>{gen.name}</GenreItem>;
               })}
-            </div>
+            </GenresInfo>
+          </MovieInfo>
+        </CardMovie>
+        <AdditionalInfo>
+          <h5>Additional Information</h5>
+          <ul>
+            <li>
+              <NavLink to={`/movies/${movieId}/cast`} replace>
+                Cast
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={`/movies/${movieId}/review`} replace>
+                Review
+              </NavLink>
+            </li>
+          </ul>
+          <div>
+            <Outlet />
           </div>
-        </div>
-      </div>
-      <h5>Additional Information</h5>
-      <ul>
-        <li>
-          <NavLink to={`/movies/${movieId}/cast`} replace>
-            Cast
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={`/movies/${movieId}/review`} replace>
-            Review
-          </NavLink>
-        </li>
-      </ul>
-      <div>
-        <Outlet />
-      </div>
+        </AdditionalInfo>
+      </Wrapper>
     </main>
   );
 };

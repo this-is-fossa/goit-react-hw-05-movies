@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { BASE_IMG_URL, fetchMovieCast } from 'services/MoviesAPI';
+import { ActorsList } from './Cast.styled';
 
 const Cast = () => {
   const [cast, setCast] = useState();
@@ -12,7 +13,7 @@ const Cast = () => {
 
   return (
     <div>
-      <ul>
+      <ActorsList>
         {cast?.map(actor => {
           return (
             <li key={actor.id}>
@@ -33,7 +34,7 @@ const Cast = () => {
             </li>
           );
         })}
-      </ul>
+      </ActorsList>
     </div>
   );
 };
